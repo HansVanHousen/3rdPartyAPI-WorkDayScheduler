@@ -1,8 +1,11 @@
 var eventsData;
+var timeDisplayEl = document.querySelector("#time-display");
+timeDisplayEl.textContent = moment().format('MMMM Do YYYY')
+
 
 function setHourColors() {
     var now = dayjs();
-    for (var i = 9; i < 18; i++) {
+    for (var i = 8; i < 18; i++) {
        if (i < now.hour()) {
             $("#hour-" + i + " textarea").addClass("past");
        } else if (i == now.hour()) {
@@ -18,6 +21,7 @@ function loadStoredData() {
     eventsData= JSON.parse(localStorage.getItem("calendarEvents"));
     if (!eventsData) {
         eventsData = {
+            hour8: "",
             hour9: "",
             hour10: "",
             hour11: "",
@@ -40,6 +44,9 @@ function handleSaveClick(event) {
 
     localStorage.setItem("calendarEvents", JSON.stringify(eventsData));
 }
+
+$('.saveBtn').on('click', handleSaveClick);
 $(function() {
+    loadStoredData();
     setHourColors();
 });
