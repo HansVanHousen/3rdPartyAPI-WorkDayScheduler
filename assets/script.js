@@ -1,6 +1,8 @@
 var eventsData;
+var calendarEvents
+
 var timeDisplayEl = document.querySelector("#time-display");
-timeDisplayEl.textContent = moment().format('MMMM Do YYYY')
+timeDisplayEl.textContent = moment().format('MMMM Do YYYY');
 
 
 function setHourColors() {
@@ -19,6 +21,7 @@ function setHourColors() {
 
 function loadStoredData() {
     eventsData= JSON.parse(localStorage.getItem("calendarEvents"));
+    // console.log(calendarEvents)
     if (!eventsData) {
         eventsData = {
             hour8: "",
@@ -33,6 +36,12 @@ function loadStoredData() {
             hour17: "",
         }
     }
+    // to do 
+    // finish for loop to store local data
+    // for (let i = 8; i < 18; i++) {
+    //     eventsData["hour8"]
+    // }
+
 }
 
 function handleSaveClick(event) {
@@ -43,6 +52,7 @@ function handleSaveClick(event) {
     eventsData["hour" + hour] = value;
 
     localStorage.setItem("calendarEvents", JSON.stringify(eventsData));
+     console.log(calendarEvents)
 }
 
 $('.saveBtn').on('click', handleSaveClick);
