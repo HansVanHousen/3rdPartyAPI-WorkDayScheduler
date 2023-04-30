@@ -21,7 +21,7 @@ function setHourColors() {
 
 function loadStoredData() {
     eventsData= JSON.parse(localStorage.getItem("calendarEvents"));
-    // console.log(calendarEvents)
+    console.log(eventsData)
     if (!eventsData) {
         eventsData = {
             hour8: "",
@@ -36,11 +36,13 @@ function loadStoredData() {
             hour17: "",
         }
     }
-    // to do 
-    // finish for loop to store local data
-    // for (let i = 8; i < 18; i++) {
-    //     eventsData["hour8"]
-    // }
+
+    for (let i = 8; i < 18; i++) {
+       const consoledata = eventsData["hour"+i]
+        console.log(consoledata)
+       const timeBlockEL = document.getElementById('hour-'+i)
+       timeBlockEL.children [1].value = consoledata     
+    }
 
 }
 
